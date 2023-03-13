@@ -3,7 +3,7 @@ import { AiOutlineHome, AiOutlineHistory, AiOutlineFileAdd } from "react-icons/a
 
 const Sidebar = () => {
 	return (
-		<aside className='w-1/4 h-full flex flex-col gap-10 items-center p-8 bg-black outline'>
+		<aside className='w-1/4 h-full flex flex-col gap-10 items-center p-8 bg-black'>
 			<h1 className='text-5xl text-primary font-extrabold'>WatchLists</h1>
 			<input
 				type='text'

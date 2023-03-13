@@ -4,11 +4,8 @@ import Sidebar from "../components/Sidebar";
 
 const Home = () => {
 	return (
-		<div className='flex w-full h-full outline'>
-			<Sidebar />
-			<main>
-				<Hero />
-			</main>
+		<div className='flex w-full h-full'>
+			<Hero />
 		</div>
 	);
 };

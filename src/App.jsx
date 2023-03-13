@@ -3,9 +3,9 @@ import Home from "./pages/Home";
 
 function App() {
 	return (
-		<div className='w-screen h-screen flex'>
+		<div className='w-screen h-screen flex bg-darkGray'>
 			<Sidebar />
-			<main></main>
+			<Home />
 		</div>
 	);
 }
