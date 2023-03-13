@@ -23,6 +23,9 @@ const Sidebar = () => {
 					<AiOutlineFileAdd className='w-7 h-7' /> Create Watchlist
 				</button>
 			</div>
+			<div className='w-full flex flex-col'>
+				<div className='p-4 text-xl text-gray border-t border-gray '>My List</div>
+			</div>
 		</aside>
 	);
 };

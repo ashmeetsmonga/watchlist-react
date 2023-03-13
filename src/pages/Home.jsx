@@ -6,7 +6,6 @@ const Home = () => {
 	return (
 		<div className='flex w-full h-full outline'>
 			<Sidebar />
-
 			<main>
 				<Hero />
 			</main>
