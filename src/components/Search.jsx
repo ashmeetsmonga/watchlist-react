@@ -7,7 +7,7 @@ const Search = () => {
 				type='text'
 				className='w-full p-3 text-lg bg-darkGray text-white border border-gray rounded-lg outline-none'
 			/>
-			<button className='px-3 py-2 text-lg bg-primary text-white rounded-lg'>Search</button>
+			<button className='px-3 py-2 text-lg bg-primary text-black rounded-lg'>Search</button>
 		</div>
 	);
 };
