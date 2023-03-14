@@ -7,7 +7,7 @@ const Sidebar = () => {
 			<h1 className='text-5xl text-primary font-extrabold'>WatchLists</h1>
 			<input
 				type='text'
-				className='bg-black px-4 py-2 border border-gray rounded-lg w-full text-xl placeholder:text-gray'
+				className='bg-black px-4 py-2 border text-white outline-none border-gray rounded-lg w-full text-xl placeholder:text-gray'
 				placeholder='Search'
 			/>
 			<div className='flex flex-col w-full gap-6'>
