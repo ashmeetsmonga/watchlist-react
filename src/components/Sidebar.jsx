@@ -1,5 +1,6 @@
 import React from "react";
 import { AiOutlineHome, AiOutlineHistory, AiOutlineFileAdd } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
 	return (
@@ -19,9 +20,12 @@ const Sidebar = () => {
 				</div>
 			</div>
 			<div className='w-full'>
-				<button className='flex justify-center items-center font-bold gap-2 p-3 bg-primary text-black text-xl w-full rounded-md border'>
+				<Link
+					to='/create-new-list'
+					className='flex justify-center items-center font-bold gap-2 p-3 bg-primary text-black text-xl w-full rounded-md border'
+				>
 					<AiOutlineFileAdd className='w-7 h-7' /> Create Watchlist
-				</button>
+				</Link>
 			</div>
 			<div className='w-full flex flex-col'>
 				<div className='p-4 text-xl text-gray border-t border-gray '>My List</div>
