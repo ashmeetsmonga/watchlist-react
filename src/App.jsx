@@ -8,7 +8,7 @@ function App() {
 		<div className='w-screen h-screen flex bg-darkGray'>
 			<Sidebar />
 			<Routes>
-				<Route path='/' element={<Home />} />
+				<Route path='/' exact element={<Home />} />
 				<Route path='/create-new-list' element={<CreateNewList />} />
 			</Routes>
 		</div>
