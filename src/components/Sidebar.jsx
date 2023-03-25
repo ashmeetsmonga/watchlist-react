@@ -12,9 +12,11 @@ const Sidebar = () => {
 				placeholder='Search'
 			/>
 			<div className='flex flex-col w-full gap-6'>
-				<div className='flex items-center gap-6 p-3 bg-gray text-white text-xl w-full rounded-md'>
-					<AiOutlineHome className='w-7 h-7' /> Home
-				</div>
+				<Link to='/'>
+					<div className='flex items-center gap-6 p-3 bg-gray text-white text-xl w-full rounded-md'>
+						<AiOutlineHome className='w-7 h-7' /> Home
+					</div>
+				</Link>
 				<div className='flex items-center gap-6 p-3 bg-black text-white text-xl w-full rounded-md border border-gray'>
 					<AiOutlineHistory className='w-7 h-7' /> History
 				</div>
