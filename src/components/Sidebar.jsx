@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AiOutlineHome, AiOutlineHistory, AiOutlineFileAdd } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { TfiMenu } from "react-icons/tfi";
+import { MdMenu, MdClose } from "react-icons/md";
 
 const Sidebar = () => {
 	const [display, setDisplay] = useState("hidden");
@@ -12,10 +12,18 @@ const Sidebar = () => {
 
 	return (
 		<>
-			<TfiMenu
-				className='w-10 h-10 text-primary absolute right-8 top-2 cursor-pointer md:hidden'
-				onClick={handleMenuToggle}
-			/>
+			{display === "hidden" && (
+				<MdMenu
+					className='w-10 h-10 text-primary absolute right-8 top-2 cursor-pointer md:hidden'
+					onClick={handleMenuToggle}
+				/>
+			)}
+			{display === "flex" && (
+				<MdClose
+					className='w-10 h-10 text-primary absolute right-8 top-2 cursor-pointer md:hidden'
+					onClick={handleMenuToggle}
+				/>
+			)}
 			<aside
 				className={`w-4/5 ${display} absolute h-full flex-col gap-10 items-center p-8 bg-black md:flex md:w-[400px] md:relative`}
 			>
