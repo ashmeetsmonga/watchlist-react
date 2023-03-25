@@ -2,7 +2,7 @@ import React from "react";
 
 const Hero = () => {
 	return (
-		<div className='w-full flex flex-col gap-4 p-8 rounded-md border border-primary bg-mediumGray mt-6 md:mt-0'>
+		<div className='w-full flex flex-col gap-4 p-8 rounded-md border border-primary bg-mediumGray'>
 			<h1 className='text-5xl text-white text-center md:text-left'>
 				Welcome to <span className='text-primary font-bold'>WatchList</span>
 			</h1>

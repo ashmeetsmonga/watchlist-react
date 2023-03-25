@@ -2,7 +2,7 @@ import React from "react";
 
 const CreateNewList = () => {
 	return (
-		<div className='flex flex-col gap-12 w-full h-full p-8'>
+		<div className='flex flex-col gap-12 w-full p-8 mt-8 md:mt-0'>
 			<h2 className='text-white text-4xl'>Create a New WatchList</h2>
 			<div className='w-full flex flex-col gap-8'>
 				<div className='w-full flex flex-col gap-2'>
