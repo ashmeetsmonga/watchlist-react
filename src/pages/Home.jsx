@@ -2,7 +2,6 @@ import React from "react";
 import Hero from "../components/Hero";
 import PopularMovies from "../components/PopularMovies";
 import Search from "../components/Search";
-import Sidebar from "../components/Sidebar";
 
 const Home = () => {
 	return (

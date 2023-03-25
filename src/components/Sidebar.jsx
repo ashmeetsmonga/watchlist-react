@@ -34,7 +34,7 @@ const Sidebar = () => {
 					placeholder='Search'
 				/>
 				<div className='flex flex-col w-full gap-6'>
-					<Link to='/'>
+					<Link to='/' onClick={handleMenuToggle}>
 						<div className='flex items-center gap-6 p-3 bg-gray text-white text-xl w-full rounded-md'>
 							<AiOutlineHome className='w-7 h-7' /> Home
 						</div>
@@ -47,6 +47,7 @@ const Sidebar = () => {
 					<Link
 						to='/create-new-list'
 						className='flex justify-center items-center font-bold gap-2 p-3 bg-primary text-black text-xl w-full rounded-md border'
+						onClick={handleMenuToggle}
 					>
 						<AiOutlineFileAdd className='w-7 h-7' /> Create Watchlist
 					</Link>
