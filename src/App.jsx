@@ -6,7 +6,7 @@ import CreateNewList from "./components/CreateNewList";
 function App() {
 	return (
 		<div className='w-screen h-screen flex bg-darkGray'>
-			<Sidebar />
+			{/* <Sidebar /> */}
 			<Routes>
 				<Route path='/' exact element={<Home />} />
 				<Route path='/create-new-list' element={<CreateNewList />} />
