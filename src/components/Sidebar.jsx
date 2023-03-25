@@ -53,7 +53,7 @@ const Sidebar = () => {
 					</Link>
 				</div>
 				<div className='w-full flex flex-col'>
-					<div className='p-4 text-xl text-gray border-t border-gray '>My List</div>
+					<div className='p-4 text-xl text-gray border-t border-gray'>My List</div>
 				</div>
 			</aside>
 		</>
