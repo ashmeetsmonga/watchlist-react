@@ -4,12 +4,21 @@ import { Link } from "react-router-dom";
 import { TfiMenu } from "react-icons/tfi";
 
 const Sidebar = () => {
-	const [display, setDisplay] = useState("block");
+	const [display, setDisplay] = useState("hidden");
+
+	const handleMenuToggle = () => {
+		setDisplay((prev) => (prev === "hidden" ? "flex" : "hidden"));
+	};
 
 	return (
 		<>
-			<TfiMenu className='w-10 h-10 text-primary absolute left-2 top-2 md:hidden ' />
-			<aside className='w-1/4 h-full flex-col gap-10 items-center p-8 bg-black hidden md:flex'>
+			<TfiMenu
+				className='w-10 h-10 text-primary absolute right-8 top-2 cursor-pointer md:hidden'
+				onClick={handleMenuToggle}
+			/>
+			<aside
+				className={`w-4/5 ${display} absolute h-full flex-col gap-10 items-center p-8 bg-black md:flex md:w-1/4 md:relative`}
+			>
 				<h1 className='text-5xl text-primary font-extrabold'>WatchLists</h1>
 				<input
 					type='text'
