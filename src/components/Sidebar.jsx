@@ -17,7 +17,7 @@ const Sidebar = () => {
 				onClick={handleMenuToggle}
 			/>
 			<aside
-				className={`w-4/5 ${display} absolute h-full flex-col gap-10 items-center p-8 bg-black md:flex md:w-1/4 md:relative`}
+				className={`w-4/5 ${display} absolute h-full flex-col gap-10 items-center p-8 bg-black md:flex md:w-[400px] md:relative`}
 			>
 				<h1 className='text-5xl text-primary font-extrabold'>WatchLists</h1>
 				<input
