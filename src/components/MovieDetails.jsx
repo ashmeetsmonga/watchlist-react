@@ -2,8 +2,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { getMovieDetailsUrl, getMoviePath } from "../endpoints/endpoints";
-import { useParams } from "react-router-dom";
-import { AiOutlineFileAdd } from "react-icons/ai";
+import { Link, useParams } from "react-router-dom";
 
 const getRuntime = (time) => {
 	const hours = Math.floor(time / 60);
@@ -27,11 +26,13 @@ const MovieDetails = () => {
 		data && (
 			<div className='w-full flex flex-col items-center p-8 mt-8 md:mt-0 text-white'>
 				<div className='w-full flex gap-4 flex-col items-center lg:flex-row md:items-start md:gap-8'>
-					<img
-						className='w-[400px] md:w-[300px] rounded-md'
-						src={getMoviePath(data.poster_path)}
-						alt=''
-					/>
+					<Link className='md:w-[500px]' to={data.homepage} target='_blank'>
+						<img
+							className='w-[370px] md:w-full rounded-md'
+							src={getMoviePath(data.poster_path)}
+							alt=''
+						/>
+					</Link>
 					<div className='w-full flex flex-col items-center md:items-start'>
 						<h1 className=' text-4xl font-bold'>{data.original_title}</h1>
 						<p className=' text-2xl font-bold'>({data.release_date.substring(0, 4)})</p>
@@ -50,11 +51,12 @@ const MovieDetails = () => {
 						</div>
 						<div className='w-4/5 mt-8 md:w-[300px]'>
 							<button className='flex justify-center items-center font-bold gap-2 p-3 bg-primary text-black text-xl w-full rounded-md border'>
-								<AiOutlineFileAdd className='w-7 h-7' /> Add to WatchList
+								Add to WatchList
 							</button>
 						</div>
 					</div>
 				</div>
+				<div></div>
 			</div>
 		)
 	);
