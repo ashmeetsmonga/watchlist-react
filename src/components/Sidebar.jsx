@@ -14,18 +14,18 @@ const Sidebar = () => {
 		<>
 			{display === "hidden" && (
 				<MdMenu
-					className='w-10 h-10 text-primary absolute right-8 top-2 cursor-pointer md:hidden'
+					className='w-10 h-10 text-primary absolute right-8 top-2 cursor-pointer lg:hidden'
 					onClick={handleMenuToggle}
 				/>
 			)}
 			{display === "flex" && (
 				<MdClose
-					className='w-10 h-10 text-primary absolute right-8 top-2 cursor-pointer md:hidden'
+					className='w-10 h-10 text-primary absolute right-8 top-2 cursor-pointer lg:hidden'
 					onClick={handleMenuToggle}
 				/>
 			)}
 			<aside
-				className={`w-4/5 ${display} absolute h-full flex-col gap-10 items-center p-8 bg-black md:flex md:w-[400px] md:relative`}
+				className={`w-4/5 max-w-[400px] ${display} absolute h-full flex-col gap-10 items-center p-8 bg-black lg:flex lg:w-[400px] lg:relative`}
 			>
 				<h1 className='text-5xl text-primary font-extrabold'>WatchLists</h1>
 				<input

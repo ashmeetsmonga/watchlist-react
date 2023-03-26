@@ -6,7 +6,7 @@ import MovieDetails from "./components/MovieDetails";
 
 function App() {
 	return (
-		<div className='w-screen h-screen flex bg-darkGray overflow-x-hidden'>
+		<div className='w-screen min-h-screen flex bg-darkGray'>
 			<Sidebar />
 			<Routes>
 				<Route path='/' exact element={<Home />} />
