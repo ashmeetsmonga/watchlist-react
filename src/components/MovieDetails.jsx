@@ -45,6 +45,7 @@ const MovieDetails = () => {
 							))}
 						</div>
 						<p>{getRuntime(data.runtime)}</p>
+						{data.tagline && <p className='text-primary mt-8 text-xl italic'>{data.tagline}</p>}
 						<div className='flex flex-col gap-2 mt-8 items-center md:items-start'>
 							<h2 className='text-2xl font-bold'>Overview</h2>
 							<p className='text-lg text-center md:text-left'>{data.overview}</p>
