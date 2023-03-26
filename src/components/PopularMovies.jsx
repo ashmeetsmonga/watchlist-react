@@ -11,6 +11,8 @@ const PopularMovies = () => {
 		return data;
 	});
 
+	if (isLoading) return <div className='text-white m-4 text-lg'>Loading...</div>;
+
 	return (
 		<div className='w-full flex flex-col'>
 			<h2 className='text-3xl text-white'>Popular Movies right now</h2>
