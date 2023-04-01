@@ -1,34 +1,24 @@
 import React, { useState } from "react";
-import { useMutation } from "react-query";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useRegister } from "../queryHooks/useRegister";
 
 const Register = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	const { mutate } = useMutation(
-		async ({ name, email, password }) => {
-			const { data } = await axios.post("http://localhost:5000/api/auth/register", {
-				name,
-				email,
-				password,
-			});
-			return data;
-		},
-		{
-			onSuccess: (data) => {
-				console.log("Success", data);
-			},
-			onError: (error) => {
-				console.log("error", error);
-			},
-		}
-	);
+	const navigate = useNavigate();
 
-	const handleSubmit = (e) => {
+	const { mutate: registerUserMutation } = useRegister();
+
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		mutate({ name, email, password });
+		try {
+			registerUserMutation({ name, email, password });
+			navigate("/");
+		} catch (e) {
+			console.log(e);
+		}
 	};
 
 	return (
