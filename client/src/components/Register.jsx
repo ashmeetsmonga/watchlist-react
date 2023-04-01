@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Register = () => {
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log(name, email, password);
+	};
+
 	return (
 		<div className='w-full flex justify-center items-center outline outline-white'>
-			<form action='' className='flex flex-col gap-4'>
+			<form className='flex flex-col gap-4' onSubmit={handleSubmit}>
 				<div className='flex flex-col gap-1'>
 					<label className='text-white text-xl'>Name *</label>
 					<input
+						value={name}
+						onChange={(e) => setName(e.target.value)}
 						className='px-4 py-2 text-white text-2xl bg-transparent border border-white rounded-md outline-none focus:outline-none'
 						type='text'
 					/>
@@ -14,13 +25,17 @@ const Register = () => {
 				<div className='flex flex-col gap-1'>
 					<label className='text-white text-xl'>Email *</label>
 					<input
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
 						className='px-4 py-2 text-white text-2xl bg-transparent border border-white rounded-md outline-none focus:outline-none'
-						type='email'
+						type='text'
 					/>
 				</div>
 				<div className='flex flex-col gap-1'>
 					<label className='text-white text-xl'>Password *</label>
 					<input
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
 						className='px-4 py-2 text-white text-2xl bg-transparent border border-white rounded-md outline-none focus:outline-none'
 						type='password'
 					/>
