@@ -8,6 +8,10 @@ const register = async (req, res) => {
 	if (!name || !email || !password)
 		throw new BadRequestError("Please enter name, email and password");
 
+	const emailExists = await User.findOne({ email });
+
+	if (emailExists) throw new BadRequestError("User already exists");
+
 	const user = await User.create({ name, email, password });
 
 	const token = user.createJWT();
