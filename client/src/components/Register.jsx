@@ -1,17 +1,39 @@
 import React, { useState } from "react";
+import { useMutation } from "react-query";
+import axios from "axios";
 
 const Register = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
+	const { mutate } = useMutation(
+		async ({ name, email, password }) => {
+			const { data } = await axios.post("http://localhost:5000/api/auth/register", {
+				name,
+				email,
+				password,
+			});
+			return data;
+		},
+		{
+			onSuccess: (data) => {
+				console.log("Success", data);
+			},
+			onError: (error) => {
+				console.log("error", error);
+			},
+		}
+	);
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(name, email, password);
+		mutate({ name, email, password });
 	};
 
 	return (
-		<div className='w-full flex justify-center items-center outline outline-white'>
+		<div className='w-full flex flex-col gap-8 justify-center items-center outline outline-white'>
+			<h1 className='text-5xl text-primary font-extrabold'>Register</h1>
 			<form className='flex flex-col gap-4' onSubmit={handleSubmit}>
 				<div className='flex flex-col gap-1'>
 					<label className='text-white text-xl'>Name *</label>
