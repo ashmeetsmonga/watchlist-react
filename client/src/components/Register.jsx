@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRegister } from "../queryHooks/useRegister";
 
@@ -9,16 +9,15 @@ const Register = () => {
 
 	const navigate = useNavigate();
 
-	const { mutate: registerUserMutation } = useRegister();
+	const { mutate: registerUserMutation, isError, isSuccess } = useRegister();
 
-	const handleSubmit = async (e) => {
+	useEffect(() => {
+		if (isSuccess) navigate("/");
+	}, [isSuccess]);
+
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		try {
-			registerUserMutation({ name, email, password });
-			navigate("/");
-		} catch (e) {
-			console.log(e);
-		}
+		registerUserMutation({ name, email, password });
 	};
 
 	return (
