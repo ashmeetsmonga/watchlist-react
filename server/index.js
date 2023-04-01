@@ -5,12 +5,15 @@ const notFound = require("./middleware/notFound");
 require("dotenv").config();
 require("./db/connect");
 const cors = require("cors");
+const { authRouter } = require("./routes/authRoutes");
 
 const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+
+app.use("/api/auth", authRouter);
 
 //middlewares
 app.use(notFound);
