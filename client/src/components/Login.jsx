@@ -9,9 +9,12 @@ const Login = () => {
 	const navigate = useNavigate();
 
 	const { mutate: loginUserMutation, isError, isSuccess } = useLogin();
-
+	console.log("Login Route");
 	useEffect(() => {
-		if (isSuccess) navigate("/");
+		if (isSuccess) {
+			console.log("login successful, navigating home");
+			navigate("/");
+		}
 	}, [isSuccess]);
 
 	const handleSubmit = (e) => {
