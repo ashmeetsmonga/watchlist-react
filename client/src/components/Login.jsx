@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRegister } from "../queryHooks/useRegister";
+import { useLogin } from "../queryHooks/useLogin";
 
 const Login = () => {
 	const [email, setEmail] = useState("");
@@ -8,7 +8,7 @@ const Login = () => {
 
 	const navigate = useNavigate();
 
-	const { mutate: registerUserMutation, isError, isSuccess } = useRegister();
+	const { mutate: loginUserMutation, isError, isSuccess } = useLogin();
 
 	useEffect(() => {
 		if (isSuccess) navigate("/");
@@ -16,12 +16,12 @@ const Login = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		registerUserMutation({ email, password });
+		loginUserMutation({ email, password });
 	};
 
 	return (
-		<div className='w-full flex flex-col gap-8 justify-center items-center outline outline-white'>
-			<h1 className='text-5xl text-primary font-extrabold'>Register</h1>
+		<div className='w-full flex flex-col gap-8 justify-center items-center'>
+			<h1 className='text-5xl text-primary font-extrabold'>Login</h1>
 			<form className='flex flex-col gap-4' onSubmit={handleSubmit}>
 				<div className='flex flex-col gap-1'>
 					<label className='text-white text-xl'>Email *</label>
@@ -45,7 +45,7 @@ const Login = () => {
 					type='submit'
 					className='flex justify-center items-center font-bold p-3 mt-8 bg-primary text-black text-xl w-full rounded-md border'
 				>
-					Create Profile
+					Sign In
 				</button>
 			</form>
 		</div>
