@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../queryHooks/useLogin";
 import { toast } from "react-toastify";
@@ -6,20 +6,22 @@ import { toast } from "react-toastify";
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-
+	const loadingToastId = useRef(null);
 	const navigate = useNavigate();
 
 	const { mutate: loginUserMutation, isError, isSuccess, isLoading } = useLogin();
 	console.log("Login Route");
 	useEffect(() => {
 		if (isLoading) {
-			toast.info("Logging In");
+			loadingToastId.current = toast.loading("Logging In");
 		}
 		if (isSuccess) {
+			toast.dismiss(loadingToastId.current);
 			toast.success("Logged In successfully");
 			navigate("/");
 		}
 		if (isError) {
+			toast.dismiss(loadingToastId.current);
 			toast.error("Authentication Failed");
 		}
 	}, [isSuccess, isLoading, isError]);
