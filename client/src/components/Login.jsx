@@ -59,6 +59,13 @@ const Login = () => {
 				>
 					Sign In
 				</button>
+				<button
+					type='submit'
+					onClick={() => navigate("/register")}
+					className='flex justify-center items-center font-bold p-3 bg-primary text-black text-xl w-full rounded-md border'
+				>
+					Register
+				</button>
 			</form>
 		</div>
 	);

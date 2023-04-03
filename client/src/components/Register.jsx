@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRegister } from "../queryHooks/useRegister";
 import { toast } from "react-toastify";
@@ -70,6 +70,12 @@ const Register = () => {
 					className='flex justify-center items-center font-bold p-3 mt-8 bg-primary text-black text-xl w-full rounded-md border'
 				>
 					Create Profile
+				</button>
+				<button
+					type='submit'
+					className='flex justify-center items-center font-bold p-3 bg-primary text-black text-xl w-full rounded-md border'
+				>
+					Login
 				</button>
 			</form>
 		</div>
