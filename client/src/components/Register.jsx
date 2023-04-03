@@ -1,19 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRegister } from "../queryHooks/useRegister";
+import { toast } from "react-toastify";
 
 const Register = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
+	const loadingToastId = useRef(null);
+
 	const navigate = useNavigate();
 
-	const { mutate: registerUserMutation, isError, isSuccess } = useRegister();
+	const { mutate: registerUserMutation, isError, isSuccess, isLoading } = useRegister();
 
 	useEffect(() => {
-		if (isSuccess) navigate("/");
-	}, [isSuccess]);
+		if (isLoading) {
+			loadingToastId.current = toast.loading("Logging In");
+		}
+		if (isSuccess) {
+			toast.dismiss(loadingToastId.current);
+			toast.success("Logged In successfully");
+			navigate("/");
+		}
+		if (isError) {
+			toast.dismiss(loadingToastId.current);
+			toast.error("Authentication Failed");
+		}
+	}, [isLoading, isSuccess, isError]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
