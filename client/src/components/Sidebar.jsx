@@ -25,7 +25,7 @@ const Sidebar = () => {
 				/>
 			)}
 			<aside
-				className={`w-4/5 max-w-[400px] ${display} absolute h-full flex-col gap-10 items-center p-8 bg-black lg:flex lg:w-[400px] lg:relative`}
+				className={`w-4/5 z-50 max-w-[400px] ${display} fixed h-screen flex-col gap-10 items-center p-8 bg-black lg:flex lg:w-[400px]`}
 			>
 				<h1 className='text-5xl text-primary font-extrabold'>WatchLists</h1>
 				<input

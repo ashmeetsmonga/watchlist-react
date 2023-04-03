@@ -6,7 +6,9 @@ const SidebarLayout = () => {
 	return (
 		<>
 			<Sidebar />
-			<Outlet />
+			<div className='w-full lg:w-[calc(100%-400px)] lg:ml-auto'>
+				<Outlet />
+			</div>
 		</>
 	);
 };
