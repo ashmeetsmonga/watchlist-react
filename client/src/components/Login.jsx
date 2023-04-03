@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../queryHooks/useLogin";
+import { toast } from "react-toastify";
 
 const Login = () => {
 	const [email, setEmail] = useState("");
@@ -8,14 +9,20 @@ const Login = () => {
 
 	const navigate = useNavigate();
 
-	const { mutate: loginUserMutation, isError, isSuccess } = useLogin();
+	const { mutate: loginUserMutation, isError, isSuccess, isLoading } = useLogin();
 	console.log("Login Route");
 	useEffect(() => {
+		if (isLoading) {
+			toast.info("Logging In");
+		}
 		if (isSuccess) {
-			console.log("login successful, navigating home");
+			toast.success("Logged In successfully");
 			navigate("/");
 		}
-	}, [isSuccess]);
+		if (isError) {
+			toast.error("Authentication Failed");
+		}
+	}, [isSuccess, isLoading, isError]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
