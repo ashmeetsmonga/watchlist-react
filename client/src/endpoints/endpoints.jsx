@@ -2,6 +2,7 @@ export const endpoints = {
 	popular: `https://api.themoviedb.org/3/movie/popular?api_key=${
 		import.meta.env.VITE_TMDB_API_KEY
 	}`,
+	watchlists: "http://localhost:5000/api/watchlist/get-all-watchlists",
 };
 
 export const getMoviePath = (url) => {

@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { AiOutlineHome, AiOutlineHistory, AiOutlineFileAdd } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { MdMenu, MdClose } from "react-icons/md";
+import { useQuery } from "react-query";
+import axios from "axios";
+import { endpoints } from "../endpoints/endpoints";
+import { axiosHeader } from "../configs/axiosHeader";
 
 const Sidebar = () => {
 	const [display, setDisplay] = useState("hidden");
@@ -9,6 +13,15 @@ const Sidebar = () => {
 	const handleMenuToggle = () => {
 		setDisplay((prev) => (prev === "hidden" ? "flex" : "hidden"));
 	};
+
+	const {
+		data: watchlistsData,
+		isLoading,
+		isError,
+	} = useQuery("watchlists", async () => {
+		const { data } = await axios.get(endpoints.watchlists, axiosHeader);
+		return data;
+	});
 
 	return (
 		<>
@@ -54,6 +67,13 @@ const Sidebar = () => {
 				</div>
 				<div className='w-full flex flex-col'>
 					<div className='p-4 text-xl text-gray border-t border-gray'>My List</div>
+					{watchlistsData?.map((list, idx) => {
+						return (
+							<div key={idx} className='px-4 py-1 text-lg text-white'>
+								{list.name}
+							</div>
+						);
+					})}
 				</div>
 			</aside>
 		</>
