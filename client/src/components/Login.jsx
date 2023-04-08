@@ -9,20 +9,30 @@ const Login = () => {
 	const loadingToastId = useRef(null);
 	const navigate = useNavigate();
 
-	const { mutate: loginUserMutation, isError, isSuccess, isLoading } = useLogin();
+	const { mutateAsync: loginUserMutation, isError, isSuccess, isLoading } = useLogin();
 	console.log("Login Route");
 	useEffect(() => {
 		if (isLoading) {
 			loadingToastId.current = toast.loading("Logging In");
 		}
 		if (isSuccess) {
-			toast.dismiss(loadingToastId.current);
-			toast.success("Logged In successfully");
+			toast.update(loadingToastId.current, {
+				render: "Logged in Successfully",
+				type: "success",
+				isLoading: false,
+				autoClose: 2000,
+				hideProgressBar: true,
+			});
 			navigate("/");
 		}
 		if (isError) {
-			toast.dismiss(loadingToastId.current);
-			toast.error("Authentication Failed");
+			toast.update(loadingToastId.current, {
+				render: "Authentication Failed",
+				type: "error",
+				isLoading: false,
+				autoClose: 2000,
+				hideProgressBar: true,
+			});
 		}
 	}, [isSuccess, isLoading, isError]);
 

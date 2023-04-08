@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 
-const RequireAuth = ({ children }) => {
+const RequireAuth = () => {
 	const token = localStorage.getItem("movie-watchlist-token");
-	return token !== null ? children : <Navigate to='/login' />;
+	if (token !== null) return <Outlet />;
+	else return <Navigate to={"/login"} />;
+	// return token !== null ? children :
 };
 
 export default RequireAuth;

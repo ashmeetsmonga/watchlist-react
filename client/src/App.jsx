@@ -14,30 +14,30 @@ function App() {
 			<Routes>
 				<Route path='/register' element={<Register />} />
 				<Route path='/login' element={<Login />} />
-				<Route element={<SidebarLayout />}>
+				<Route element={<RequireAuth />}>
 					<Route
 						path='/'
 						exact
 						element={
-							<RequireAuth>
+							<SidebarLayout>
 								<Home />
-							</RequireAuth>
+							</SidebarLayout>
 						}
 					/>
 					<Route
 						path='/create-new-list'
 						element={
-							<RequireAuth>
+							<SidebarLayout>
 								<CreateNewList />
-							</RequireAuth>
+							</SidebarLayout>
 						}
 					/>
 					<Route
 						path='/movie-details/:movieId'
 						element={
-							<RequireAuth>
+							<SidebarLayout>
 								<MovieDetails />
-							</RequireAuth>
+							</SidebarLayout>
 						}
 					/>
 				</Route>
