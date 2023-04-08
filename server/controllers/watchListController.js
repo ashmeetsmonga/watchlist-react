@@ -5,9 +5,16 @@ const createWatchlist = async (req, res) => {
 	const { name, description } = req.body;
 	const { userId } = req.user;
 
-	const watchlist = Watchlist.create({ name, description, createdBy: userId });
+	const watchlist = await Watchlist.create({ name, description, createdBy: userId });
 
 	res.status(StatusCodes.CREATED).json({ name, description });
 };
 
-module.exports = { createWatchlist };
+const getAllWatchLists = async (req, res) => {
+	const { userId } = req.user;
+	console.log("here");
+	const watchlists = await Watchlist.find({ createdBy: userId });
+	res.status(StatusCodes.OK).json(watchlists);
+};
+
+module.exports = { createWatchlist, getAllWatchLists };
