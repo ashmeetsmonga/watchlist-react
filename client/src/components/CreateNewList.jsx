@@ -1,30 +1,11 @@
-import axios from "axios";
 import React, { useState } from "react";
-import { useMutation, useQueryClient } from "react-query";
-import { axiosHeader } from "../configs/axiosHeader";
-import { endpoints } from "../endpoints/endpoints";
+import { useAddNewWatchlistMutation } from "../queryHooks/useAddNewWatchlistMutation";
 
 const CreateNewList = () => {
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");
 
-	const queryClient = useQueryClient();
-	const {
-		mutate: addNewWatchlistMutation,
-		isLoading,
-		isError,
-	} = useMutation(
-		async ({ name, description }) => {
-			const { data } = axios.post(endpoints.createWatchlist, { name, description }, axiosHeader);
-			return data;
-		},
-		{
-			onSuccess: async (data) => {
-				console.log("Create new watchlist success");
-				await queryClient.invalidateQueries("watchlists");
-			},
-		}
-	);
+	const { mutate: addNewWatchlistMutation, isLoading, isError } = useAddNewWatchlistMutation();
 
 	const addNewWatchlist = () => {
 		addNewWatchlistMutation({ name, description });
