@@ -1,13 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useAddNewWatchlistMutation } from "../queryHooks/useAddNewWatchlistMutation";
+import { toast } from "react-toastify";
 
 const CreateNewList = () => {
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");
+	const toastId = useRef(null);
 
-	const { mutate: addNewWatchlistMutation, isLoading, isError } = useAddNewWatchlistMutation();
+	const {
+		mutate: addNewWatchlistMutation,
+		isLoading,
+		isError,
+		isSuccess,
+	} = useAddNewWatchlistMutation();
+
+	useEffect(() => {
+		if (isLoading) toastId.current = toast.loading("Creating New List");
+
+		if (isSuccess)
+			toast.update(toastId.current, {
+				render: "New List Created Successfully",
+				type: "success",
+				isLoading: false,
+				autoClose: 2000,
+				hideProgressBar: true,
+			});
+
+		if (isError)
+			toast.update(toastId.current, {
+				render: "Unable to Add New List, Please Try Again",
+				type: "error",
+				isLoading: false,
+				autoClose: 2000,
+				hideProgressBar: true,
+			});
+	}, [isLoading, isSuccess, isError]);
 
 	const addNewWatchlist = () => {
+		if (!name) {
+			toast.error("Please provide name");
+			return;
+		}
 		addNewWatchlistMutation({ name, description });
 	};
 
@@ -35,7 +68,8 @@ const CreateNewList = () => {
 				</div>
 			</div>
 			<button
-				className='w-[15rem] font-bold p-3 bg-primary text-black text-xl rounded-md'
+				className='w-[15rem] font-bold p-3 bg-primary text-black text-xl rounded-md disabled:bg-gray disabled:text-white disabled:font-normal'
+				disabled={!name}
 				onClick={addNewWatchlist}
 			>
 				Create Watchlist
