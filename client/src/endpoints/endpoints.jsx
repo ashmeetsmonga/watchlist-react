@@ -3,6 +3,7 @@ export const endpoints = {
 		import.meta.env.VITE_TMDB_API_KEY
 	}`,
 	watchlists: "http://localhost:5000/api/watchlist/get-all-watchlists",
+	createWatchlist: "http://localhost:5000/api/watchlist/create-watchlist",
 };
 
 export const getMoviePath = (url) => {

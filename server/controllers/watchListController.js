@@ -12,7 +12,6 @@ const createWatchlist = async (req, res) => {
 
 const getAllWatchLists = async (req, res) => {
 	const { userId } = req.user;
-	console.log("here");
 	const watchlists = await Watchlist.find({ createdBy: userId });
 	res.status(StatusCodes.OK).json(watchlists);
 };
