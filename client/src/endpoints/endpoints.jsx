@@ -1,9 +1,12 @@
+const BASE_URL = "http://localhost:5000";
+
 export const endpoints = {
 	popular: `https://api.themoviedb.org/3/movie/popular?api_key=${
 		import.meta.env.VITE_TMDB_API_KEY
 	}`,
-	watchlists: "http://localhost:5000/api/watchlist/get-all-watchlists",
-	createWatchlist: "http://localhost:5000/api/watchlist/create-watchlist",
+	watchlists: `${BASE_URL}/api/watchlist/get-all-watchlists`,
+	createWatchlist: `${BASE_URL}/api/watchlist/create-watchlist`,
+	addMovieToWatchlist: `${BASE_URL}/api/watchlist/add-movie-to-watchlist`,
 };
 
 export const getMoviePath = (url) => {

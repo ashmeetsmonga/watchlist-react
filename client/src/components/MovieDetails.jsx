@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { getMovieDetailsUrl, getMoviePath } from "../endpoints/endpoints";
 import { Link, useParams } from "react-router-dom";
+import { Context } from "../context/WatchlistContext";
+import { useAddMovieToWatchlistMutation } from "../queryHooks/useAddMovieToWatchlistMutation";
 
 const getRuntime = (time) => {
 	const hours = Math.floor(time / 60);
@@ -13,12 +15,22 @@ const getRuntime = (time) => {
 
 const MovieDetails = () => {
 	const { movieId } = useParams();
+	const { selectedWatchlist } = useContext(Context);
 	const { data, isLoading, isError } = useQuery(movieId, async () => {
 		const url = getMovieDetailsUrl(movieId);
 		const { data } = await axios.get(url);
-		console.log(data);
 		return data;
 	});
+
+	const {
+		mutate: addMovieToWatchlistMutation,
+		isLoading: isLoadingMutation,
+		isError: isErrorMutation,
+	} = useAddMovieToWatchlistMutation();
+
+	const addMovieToWatchlist = () => {
+		addMovieToWatchlistMutation({ movieId, watchlistId: selectedWatchlist });
+	};
 
 	if (isLoading) return <div className='text-white m-4 text-lg'>Loading...</div>;
 
@@ -51,7 +63,10 @@ const MovieDetails = () => {
 							<p className='text-lg text-center lg:text-left'>{data.overview}</p>
 						</div>
 						<div className='w-4/5 mt-8 md:w-[300px]'>
-							<button className='flex justify-center items-center font-bold gap-2 p-3 bg-primary text-black text-xl w-full rounded-md border'>
+							<button
+								onClick={addMovieToWatchlist}
+								className='flex justify-center items-center font-bold gap-2 p-3 bg-primary text-black text-xl w-full rounded-md border'
+							>
 								Add to WatchList
 							</button>
 						</div>

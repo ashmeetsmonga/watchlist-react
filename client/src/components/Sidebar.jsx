@@ -21,7 +21,6 @@ const Sidebar = () => {
 		isLoading,
 		isError,
 	} = useQuery("watchlists", async () => {
-		console.log(localStorage.getItem("movie-watchlist-token"));
 		const { data } = await axios.get(endpoints.watchlists, {
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem("movie-watchlist-token")}`,
