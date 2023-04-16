@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { AiOutlineHome, AiOutlineHistory, AiOutlineFileAdd } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { MdMenu, MdClose } from "react-icons/md";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { endpoints } from "../endpoints/endpoints";
-import { axiosHeader } from "../configs/axiosHeader";
+import { Context } from "../context/WatchlistContext";
 
 const Sidebar = () => {
 	const [display, setDisplay] = useState("hidden");
+
+	const { selectedWatchlist, setSelectedWatchlist } = useContext(Context);
 
 	const handleMenuToggle = () => {
 		setDisplay((prev) => (prev === "hidden" ? "flex" : "hidden"));
@@ -71,10 +73,16 @@ const Sidebar = () => {
 					</Link>
 				</div>
 				<div className='w-full flex flex-col'>
-					<div className='p-4 text-xl text-gray border-t border-gray'>My List</div>
+					<div className='p-4 text-xl text-white border-t border-gray'>My List</div>
 					{watchlistsData?.map((list, idx) => {
 						return (
-							<div key={idx} className='px-4 py-1 text-lg text-white'>
+							<div
+								key={idx}
+								onClick={() => setSelectedWatchlist(list._id)}
+								className={`px-4 py-1 text-lg cursor-pointer ${
+									selectedWatchlist === list._id ? "text-primary" : "text-white"
+								}`}
+							>
 								{list.name}
 							</div>
 						);
