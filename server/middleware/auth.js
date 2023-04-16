@@ -7,10 +7,8 @@ const authorizationMiddleware = async (req, res, next) => {
 		throw new UnAuthorizedError("Authorization Error 1");
 
 	const token = authHeader.split(" ")[1];
-	console.log(token);
 	try {
 		const decoded = jwt.decode(token, process.env.JWT_SECRET);
-		console.log("Decoded token", decoded);
 		req.user = { userId: decoded.userId, name: decoded.name };
 		next();
 	} catch (error) {

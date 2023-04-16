@@ -19,4 +19,11 @@ const getAllWatchLists = async (req, res) => {
 	res.status(StatusCodes.OK).json(watchlists);
 };
 
-module.exports = { createWatchlist, getAllWatchLists };
+const addMovieToWatchlist = async (req, res) => {
+	const { movieId, watchlistId } = req.body;
+	await Watchlist.updateOne({ _id: watchlistId }, { $push: { movies: movieId } });
+	const watchlist = await Watchlist.find({ _id: watchlistId });
+	res.status(StatusCodes.OK).json(watchlist);
+};
+
+module.exports = { createWatchlist, getAllWatchLists, addMovieToWatchlist };

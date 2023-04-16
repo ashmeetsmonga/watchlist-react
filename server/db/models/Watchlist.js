@@ -8,6 +8,11 @@ const WatchlistSchema = new mongoose.Schema({
 	description: {
 		type: String,
 	},
+	movies: [
+		{
+			type: String,
+		},
+	],
 	createdAt: {
 		type: Date,
 		default: Date.now(),
